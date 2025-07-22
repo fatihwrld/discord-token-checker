@@ -2,16 +2,16 @@ import requests
 from colorama import Fore, Style, init
 from pystyle import Colors, Colorate
 from datetime import datetime
-from modules.console import console
+from modules.console import Console
 
 init(autoreset=True)
 
-with open("token.txt", "r") as file:
+with open("data/input/token.txt", "r") as file:
     tokens = [line.strip() for line in file if line.strip()]
 
 class TokenChecker:
     def __init__(self):
-        self.console = console
+        self.console = Console(len(tokens))
         self.api_url = "https://discord.com/api/v9"
 
     def check_token(self):
@@ -36,7 +36,7 @@ class TokenChecker:
                     ]
                     
                     print("  |  ".join(valid_info))
-                    with open("valid.txt", "a") as f:
+                    with open("data/output/valid.txt", "a") as f:
                         f.write(f"{token}\n")
 
                 else:
@@ -47,7 +47,7 @@ class TokenChecker:
                         Colorate.Horizontal(Colors.white_to_blue, f"[{token.split('.')[0]}]")
                     ]
                     print("  |  ".join(invalid_info))
-                    with open("invalid.txt", "a") as f:
+                    with open("data/output/invalid.txt", "a") as f:
                         f.write(f"{token}\n")
 
 
