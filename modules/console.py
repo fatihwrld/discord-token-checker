@@ -6,13 +6,12 @@ from pystyle import Colors, Colorate, Center
 from datetime import datetime
 from time import perf_counter, sleep
 
-with open("token.txt", "r") as file:
-    tokens = [line.strip() for line in file if line.strip()]
 init(autoreset=True)
 
 class Console:
 
-    def __init__(self):
+    def __init__(self, token_count=0):
+        self.token_count = token_count
         self.show_banner()
     
     def show_banner(self):
@@ -27,7 +26,7 @@ class Console:
 |_|_| |_| |_|\__,_|\___/ 
                                                   
 Made by github.com/fatihwrld
-[{datetime.now().strftime('%H:%M')}] Total {len(tokens)} tokens found.
+[{datetime.now().strftime('%H:%M')}] Total {self.token_count} tokens found.
 
       """))
 
